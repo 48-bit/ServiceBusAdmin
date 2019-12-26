@@ -1,0 +1,27 @@
+﻿@using ServiceBusAdmin.Components.Menu
+@using ServiceBusAdmin.Constants
+<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">ServiceBusAdmin</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="nav flex-column">
+        <NavMenuItem Text="Home" TargetUrl="@AppUrls.Home" IconClass="@IconClasses.Home" Match="@NavLinkMatch.All" />
+        <NavMenuItem Text="Counter" TargetUrl="@AppUrls.Counter" IconClass="@IconClasses.Counter"/>
+        <NavMenuItem Text="Fetch Data" TargetUrl="@AppUrls.FetchData" IconClass="@IconClasses.Fetch"></NavMenuItem>
+    </ul>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
